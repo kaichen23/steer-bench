@@ -15,10 +15,10 @@ To evaluate the steerability of LLMs toward specific community perspectives, we 
 
 ## Evaluating LLM Steerability
 
-
+Evaluation of LLM steerability using in-context learning, across 13 models using five different configurations. Models from different families demonstrate varying patterns of steerability.
 <img src="figure/in_context_evaluation.png" width="800">
 
-
+Domain-level steerability of LLMs using the In-topic Few-shot configuration. Accuracy is reported across 19 domains.
 <img src="figure/in_context_eval_domain.png" width="800">
 
 
