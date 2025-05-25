@@ -13,11 +13,13 @@ To evaluate the steerability of LLMs toward specific community perspectives, we 
 
 <img src="figure/group_align_pipeline.png" width="800">
 
+## Evaluating LLM Steerability
 
 
+<img src="figure/in_context_evaluation.png" width="800">
 
 
-
+<img src="figure/in_context_eval_domain.png" width="800">
 
 
 
