@@ -2,14 +2,14 @@
 Paper: 
 
 ## Overview
-Steerability, or the ability of large language models (LLMs) to adapt outputs to align with diverse community-specific norms, perspectives, and communication styles, is critical for real-world applications but remains under-evaluated. We introduce 、\textbf{STEER-BENCH}, a benchmark for assessing population-specific steering using contrasting Reddit communities. Covering 30 contrasting subreddit pairs across 19 domains, STEER-BENCH includes over 10,000 instruction-response pairs and validated 5,500 multiple-choice question with corresponding silver labels to test alignment with diverse community norms. Our evaluation of 13 popular LLMs using STEER-BENCH reveals that while human experts achieve an accuracy of 81% with silver labels, the best-performing models reach only around 65% accuracy depending on the domain and configuration. Some models lag behind human-level alignment by over 15 percentage points, highlighting significant gaps in community-sensitive steerability.
+Steerability, or the ability of large language models (LLMs) to adapt outputs to align with diverse community-specific norms, perspectives, and communication styles, is critical for real-world applications but remains under-evaluated. We introduce 、STEER-BENCH, a benchmark for assessing population-specific steering using contrasting Reddit communities. Covering 30 contrasting subreddit pairs across 19 domains, STEER-BENCH includes over 10,000 instruction-response pairs and validated 5,500 multiple-choice question with corresponding silver labels to test alignment with diverse community norms. Our evaluation of 13 popular LLMs using STEER-BENCH reveals that while human experts achieve an accuracy of 81% with silver labels, the best-performing models reach only around 65% accuracy depending on the domain and configuration. Some models lag behind human-level alignment by over 15 percentage points, highlighting significant gaps in community-sensitive steerability.
 STEER-BENCH is a benchmark to systematically assess how effectively LLMs understand community-specific instructions, their resilience to adversarial steering attempts, and their ability to accurately represent diverse cultural and ideological perspectives.
 
 <img src="figure/manipulate_pipeline.png" width="800">
 
-## IdeoINST: A Collection of Ideologically Driven Instructional Data
+## STEER-BENCH Construction
 
-we create a dataset named \textsc{IdeoINST} for \textbf{ideo}logically-charged \textbf{inst}ruction tuning. \textsc{IdeoINST} comprises of around 6,000 opinion-eliciting instructions across six sociopolitical topics, each paired with dual responses---one reflecting a left-leaning bias and one reflecting a right-leaning bias.
+To evaluate the steerability of LLMs toward specific community perspectives, we construct STEER-BENCH, a benchmark comprising automatically generated steering demonstrations and evaluation instances derived from contrasting online communities. The construction pipeline of STEER-BENCH is shown in Figure 2. We describe how we identify community pairs, collect data, generate instruction-response demonstrations $I = {(x_j, y_j)}$ for steering models, and build multiple-choice evaluation instances for assessing whether a model steered toward a community $C$ accurately reflects its views.
 
 <img src="figure/data_generation_pipeline.png" width="800">
 
