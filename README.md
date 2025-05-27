@@ -1,4 +1,4 @@
-# STEER-BENCH: A Benchmark for Evaluating the \\Steerability of Large Language Models
+# STEER-BENCH: A Benchmark for Evaluating the Steerability of Large Language Models
 Paper: 
 
 ## Overview
