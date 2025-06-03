@@ -6,6 +6,7 @@ Paper: [STEER-BENCH: A Benchmark for Evaluating the Steerability of Large Langua
 ```
 pip install vllm
 pip install transformers
+pip install pandas
 ```
 2. Run benchmark
 ```
@@ -13,8 +14,11 @@ python evaluation.py --config combine --model ./Qwen2.5-72B-Instruct
 ```
 
 `config`: five prompting configurations to evaluate the effectiveness of in-context learning
-* `vanilla`: Answer multi-choice questions without context;
-* `out_topic`: Include 12 randomly sampled few-shot examples unrelated to the topic of multi-choice questions
+* `vanilla`: Vanilla - Answer multi-choice questions without context;
+* `out_topic`: Out-of-topic Few-shot - Include 12 randomly sampled few-shot examples unrelated to the topic of multi-choice questions;
+* `subreddit`: Subreddit Identifier - Prepend the subreddits name as context, e.g., “You are responding from r/Parenting”;
+* `in_topic`: In-topic Few-shot - Include few-shot examples related to the topic of multi-choice questions;
+* `combo`: In-topic Few-shot + Subreddit Identifier - Combine in-topic examples and subreddit identifier;
 
 
 ## Overview
