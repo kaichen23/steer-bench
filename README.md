@@ -2,12 +2,19 @@
 Paper: [STEER-BENCH: A Benchmark for Evaluating the Steerability of Large Language Models](https://arxiv.org/pdf/2505.20645)
 
 ## How to run it?
-### Setup
+1. Install packages
 ```
-function test() {
-  console.log("notice the blank line before this function?");
-}
+pip install vllm
+pip install transformers
 ```
+2. Run benchmark
+```
+python evaluation.py --config combine --model ./Qwen2.5-72B-Instruct
+```
+'config': five prompting configurations to evaluate the effectiveness of in-context learning
+* 'vanilla': Answer multi-choice questions without context;
+* 'out_topic': Include 12 randomly sampled few-shot examples unrelated to the topic of multi-choice questions
+
 
 ## Overview
 Steerability, or the ability of large language models (LLMs) to adapt outputs to align with diverse community-specific norms, perspectives, and communication styles, is critical for real-world applications but remains under-evaluated. We introduce 、STEER-BENCH, a benchmark for assessing population-specific steering using contrasting Reddit communities. Covering 30 contrasting subreddit pairs across 19 domains, STEER-BENCH includes over 10,000 instruction-response pairs and validated 5,500 multiple-choice question with corresponding silver labels to test alignment with diverse community norms. Our evaluation of 13 popular LLMs using STEER-BENCH reveals that while human experts achieve an accuracy of 81% with silver labels, the best-performing models reach only around 65% accuracy depending on the domain and configuration. Some models lag behind human-level alignment by over 15 percentage points, highlighting significant gaps in community-sensitive steerability.
