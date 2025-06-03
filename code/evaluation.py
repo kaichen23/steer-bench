@@ -15,7 +15,7 @@ if __name__ == '__main__':
     parser.add_argument('--max_tokens', type=int, default=1024)
     args = parser.parse_args()
     os.makedirs('in_context_eval', exist_ok=True)
-
+    model_str = str(args.model).replace("/", "_")
 
     def convert_dict_list_to_string(dict_list):
         """
@@ -57,7 +57,7 @@ if __name__ == '__main__':
         df = df.drop('open_ended', axis=1)
 
         records = df.to_dict(orient='records')
-        with open('in_context_eval/in_context_eval_vanilla_{}.json'.format(args.model), 'w') as json_file:
+        with open('in_context_eval/in_context_eval_vanilla_{}.json'.format(model_str), 'w') as json_file:
             json_file.write(json.dumps(records, indent=4))
 
         return answer_list, f_outputs
@@ -71,7 +71,7 @@ if __name__ == '__main__':
         llm = LLM(model=args.model, gpu_memory_utilization=0.9, tensor_parallel_size=args.num_gpu)
         tokenizer = AutoTokenizer.from_pretrained(args.model)
 
-        df = pd.read_json("../dataset/in_context_eval_outtopic.json")
+        df = pd.read_json("../dataset/in_context_eval_out_topic.json")
         close_ended_list = df["closed_ended_question"].tolist()
         open_ended_list = df["instruction_pair"].tolist()
         domain_list = df["domain"].tolist()
@@ -91,10 +91,10 @@ if __name__ == '__main__':
         outputs = llm.generate(prompts, sampling_params)
         f_outputs = [output.outputs[0].text for output in outputs]
         df["pred_answer"] = f_outputs
-        df = df.drop('open_ended', axis=1)
+        df = df.drop('instruction_pair', axis=1)
 
         records = df.to_dict(orient='records')
-        with open('in_context_eval/in_context_eval_outtopic_{}.json'.format(args.model), 'w') as json_file:
+        with open('in_context_eval/in_context_eval_out_topic_{}.json'.format(model_str), 'w') as json_file:
             json_file.write(json.dumps(records, indent=4))
 
         return answer_list, f_outputs
@@ -130,7 +130,7 @@ if __name__ == '__main__':
         df = df.drop('open_ended', axis=1)
 
         records = df.to_dict(orient='records')
-        with open('in_context_eval/in_context_eval_subreddit_{}.json'.format(args.model), 'w') as json_file:
+        with open('in_context_eval/in_context_eval_subreddit_{}.json'.format(model_str), 'w') as json_file:
             json_file.write(json.dumps(records, indent=4))
 
         return answer_list, f_outputs
@@ -166,7 +166,7 @@ if __name__ == '__main__':
         df = df.drop('open_ended', axis=1)
 
         records = df.to_dict(orient='records')
-        with open('in_context_eval/in_context_eval_intopic_{}.json'.format(args.model), 'w') as json_file:
+        with open('in_context_eval/in_context_eval_intopic_{}.json'.format(model_str), 'w') as json_file:
             json_file.write(json.dumps(records, indent=4))
 
         return answer_list, f_outputs
@@ -202,7 +202,7 @@ if __name__ == '__main__':
         df = df.drop('open_ended', axis=1)
 
         records = df.to_dict(orient='records')
-        with open('in_context_eval/in_context_eval_combine_{}.json'.format(args.model), 'w') as json_file:
+        with open('in_context_eval/in_context_eval_combine_{}.json'.format(model_str), 'w') as json_file:
             json_file.write(json.dumps(records, indent=4))
 
         return answer_list, f_outputs
@@ -261,27 +261,37 @@ if __name__ == '__main__':
         true_answers, raw_pred_answers = generate_predict_vanilla()
         predicted_answers = extract_letters(raw_pred_answers)
         accuracy = calculate_accuracy(true_answers, predicted_answers)
+        print("///////////////////////////////////////////")
         print(f"Accuracy: {accuracy:.3f}")
+        print("///////////////////////////////////////////")
     elif args.config == "out_topic":
         true_answers, raw_pred_answers = generate_predict_out_topic()
         predicted_answers = extract_letters(raw_pred_answers)
         accuracy = calculate_accuracy(true_answers, predicted_answers)
+        print("///////////////////////////////////////////")
         print(f"Accuracy: {accuracy:.3f}")
+        print("///////////////////////////////////////////")
     elif args.config == "subreddit":
         true_answers, raw_pred_answers = generate_predict_subreddit()
         predicted_answers = extract_letters(raw_pred_answers)
         accuracy = calculate_accuracy(true_answers, predicted_answers)
+        print("///////////////////////////////////////////")
         print(f"Accuracy: {accuracy:.3f}")
+        print("///////////////////////////////////////////")
     elif args.config == "in_topic":
         true_answers, raw_pred_answers = generate_predict_in_topic()
         predicted_answers = extract_letters(raw_pred_answers)
         accuracy = calculate_accuracy(true_answers, predicted_answers)
+        print("///////////////////////////////////////////")
         print(f"Accuracy: {accuracy:.3f}")
+        print("///////////////////////////////////////////")
     elif args.config == "combine":
         true_answers, raw_pred_answers = generate_predict_combine()
         predicted_answers = extract_letters(raw_pred_answers)
         accuracy = calculate_accuracy(true_answers, predicted_answers)
+        print("///////////////////////////////////////////")
         print(f"Accuracy: {accuracy:.3f}")
+        print("///////////////////////////////////////////")
     else:
         print("Please choose right config.")
 
