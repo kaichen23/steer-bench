@@ -22,6 +22,7 @@ python evaluation.py --config combine --model ./Qwen2.5-72B-Instruct
 
 `model`: Directory to the model folder.
 `num_gpu`: Number of GPUs.
+
 There are other parameters, including `temperature`, `top_p`, `max_tokens`.
 
 
