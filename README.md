@@ -13,8 +13,8 @@ python evaluation.py --config combine --model ./Qwen2.5-72B-Instruct
 ```
 
 `config`: five prompting configurations to evaluate the effectiveness of in-context learning
-* 'vanilla': Answer multi-choice questions without context;
-* 'out_topic': Include 12 randomly sampled few-shot examples unrelated to the topic of multi-choice questions
+* `vanilla`: Answer multi-choice questions without context;
+* `out_topic`: Include 12 randomly sampled few-shot examples unrelated to the topic of multi-choice questions
 
 
 ## Overview
