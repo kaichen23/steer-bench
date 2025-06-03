@@ -1,0 +1,4 @@
+You are being evaluated on your ability to provide appropriate responses to {}-related questions. Answer the multiple-choice question by selecting the option. Provide only the letter of your chosen answer (A, B, C, or D). Output the selected options only.
+multiple-choice question:
+{}
+
